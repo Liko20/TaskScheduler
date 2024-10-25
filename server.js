@@ -12,7 +12,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
-mongoose.connect(   process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( `mongodb+srv://liko:${process.env.ATLAS_PASS}@cluster0.9l161.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
+  console.log('Connected to MongoDB Atlas!');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB Atlas:', error);
+});;
+
+
 
 const server = http.createServer(app);
 const io = socketIo(server);
