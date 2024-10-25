@@ -33,6 +33,8 @@ io.on('connection', socket => {
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/tasks' ,filtering);
-
+app.get('/', (req,res)=>{
+  res.send("server is live");
+})
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
